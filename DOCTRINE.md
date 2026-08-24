@@ -1,0 +1,198 @@
+# The Kymira Doctrine
+
+Ten principles for building business intelligence you can trust. None of them is
+theory. Each one is the lesson left behind by a real wrong number that once
+reached a real page, and each one is now something the Kymira skills teach your
+agent to do without being asked.
+
+A general coding agent does not show up believing these. That gap is the whole
+product.
+
+---
+
+## 1. An AI never authors a number
+
+The model writes pipelines, layouts, and prose. Plain, inspectable code computes
+every figure that appears on a page. No exceptions, and no "it is only a summary
+stat."
+
+This is what separates a certified report from a text-to-SQL demo, which
+routinely produces confident wrong answers. It is a rule about how the work is
+built, not a request to the model, so the model cannot be talked out of it.
+
+Every computed number reconciles against the source file's own totals, not
+against your recomputation of them. If a file states no total to tie to, that is
+something to raise, not a check to quietly skip.
+
+The honest limit, which you should state whenever you claim this principle: the
+model does not author the number, but it does author the plan. A wrong column or
+a wrong filter produces a wrong number that reconciles perfectly. The gates here
+cover arithmetic and identity. They do not cover meaning. That is why principle
+10 exists, and why confirming a definition is not a formality.
+
+## 2. Two independent reads beat one careful one
+
+Find each value two different ways that share no logic: once by where it sits in
+the file, once by the label next to it. Both must agree, within a tolerance you
+write down.
+
+A silent layout shift or a wrong-column read cannot fool two different methods
+the same way. When they disagree, you investigate. You never auto-resolve the
+disagreement, and you never widen the tolerance to make it go away.
+
+## 3. Refuse to guess
+
+When a label appears zero times, or more than once, that is an error. When a date
+will not parse, that is an error. When an expected column is missing, that is an
+error.
+
+Guessing your way past ambiguity is exactly how wrong numbers get published. The
+correct response to ambiguity is to stop and say precisely what was ambiguous.
+
+## 4. Filenames lie
+
+Vendor exports are named by the system that produced them, not by what they hold.
+A file called `weekly_sales.csv` may contain last week, another account, or both.
+
+Verify identity and period from inside the file: pre-header rows, embedded
+titles, report metadata. Where a file carries no internal evidence of what it is,
+say so, and never compare a filename-derived value against itself, which is a
+test that always passes and proves nothing.
+
+## 5. Fail closed and stale
+
+A failed check blocks the update. The last known-good version stays live, marked
+so a reader knows a newer cut is under review, and a person is told.
+
+Never publish a number you cannot stand behind. Stale and correct beats fresh and
+wrong, and the gap between them is where trust is lost for good.
+
+## 6. Test that a check fires, not that it exists
+
+The most dangerous check is one that can never trip. Every guard needs a test
+that feeds it known-bad input and confirms it blocks, not a test that feeds it
+good input and confirms nothing happens.
+
+A check that cannot fail is a comment with a runtime cost. More than once, checks
+that looked green for weeks turned out to be structurally incapable of firing.
+
+## 7. Clean by relabelling, never by revaluing
+
+Cleaning the data is where most of the real work lives, and where trustworthy
+reports usually die, because fixing the data and changing the numbers look
+identical from inside the code.
+
+The line: you may change what a row is called. You may never change what a row
+says.
+
+Fair game, because these concern identity: normalizing a name or SKU so two
+spellings resolve to one thing, unifying date or currency formats where the value
+is unchanged, removing proven-duplicate rows, classifying a row into a category,
+joining a row to a reference table.
+
+Off limits, because these author values: filling in a missing number, smoothing
+or clipping an outlier, back-filling from a prior period, or deriving a value the
+source does not contain and presenting it as if it came from the source.
+
+A missing number stays missing and is reported as missing. Blank is a fact about
+the source, and replacing it with a plausible figure destroys the one signal that
+something upstream broke.
+
+This is testable, which is what makes it real rather than aspirational: after
+cleaning, the anchor must still tie. Relabelling cannot move a sum. If a total
+shifted while you were cleaning, something was revalued.
+
+## 8. Thresholds are configuration, not code
+
+Every tolerance, bound, alias list, and content marker is a setting, not a magic
+number buried in logic. Code holds the mechanism, configuration holds the
+judgment. That line is what decides whether the second customer is an afternoon
+or a rebuild.
+
+Empty configuration must fail loudly, never default to permissive. A check that
+silently passes because nobody configured it is worse than no check, because it
+reports a safety it never provided.
+
+## 9. A platform's own numbers are claims, not facts
+
+The moment a report ingests marketing data from Meta, Google, TikTok, or an
+analytics tool, it meets a kind of number that looks like a measurement and is
+actually an assertion by an interested party.
+
+Meta reports the conversions Meta believes it caused, on Meta's window and model.
+Google reports Google's. Add them up and they routinely claim more revenue than
+the business actually made. These are not errors. Each platform is answering its
+own question in its own favor.
+
+So record them as claims, name the claimant, and never blend them into a
+reconciled figure.
+
+- A platform number is labelled with its source and window: "Meta reports $41,200
+  (7-day click, 1-day view)", never "paid social revenue: $41,200".
+- Reconciled revenue comes from a system of record, the store or the ERP or the
+  retailer, and ties to an anchor. Platform claims never feed it.
+- The two can sit side by side, and their ratio is honest and useful. Arithmetic
+  that treats a claim as a measurement is not.
+
+The same holds for any attribution your own report models. That output is your
+claim, labelled as yours, and it is never laundered into the reconciled column.
+
+## 10. A metric without its definition is not a number
+
+Across the metrics that consumer and operations teams actually use, competing
+definitions in live production are the norm, not the exception. Not most of them.
+Nearly all of them.
+
+The worst offenders are also the most requested reports:
+
+- Sell-through rate has several denominators in simultaneous use (units received,
+  beginning on-hand, sold plus ending, average inventory). One large marketplace's
+  version is a ratio routinely above 1 and not comparable to any of them.
+- Revenue: a single storefront admin alone can emit gross, net, and total, before
+  you reach accounting's net versus management's net.
+- Promotional lift means a multiple in one toolset and a percentage in another. A
+  fork of a hundred points with no notational convention to warn you.
+- Inventory turns computed on a sales numerator versus a cost numerator differ by
+  the entire gross margin, from the same data.
+- The retail calendar forks 4-5-4 versus 4-4-5 versus thirteen periods, and the
+  period definition is usually silent in the data.
+
+Why this is doctrine and not a documentation footnote: every one of these
+alternatives is internally consistent. Each reconciles perfectly against its own
+source and passes every gate above. Principle 1 stops a model from computing a
+figure. It does nothing about a figure meaning something other than what the
+reader assumes. This is the largest source of silent wrong numbers in the
+domain, and it is invisible to arithmetic.
+
+So:
+
+1. Resolve the fork before computing. Ask in business language, with the
+   consequence stated: "Percent of what, of what we shipped this period, or of
+   what was on the shelf at the start?"
+2. Record the answer as a ruling: durable, attributed, reviewable, reversible.
+3. Show the definition beside the number, not in a tooltip nobody opens.
+   `Sell-through 62% (units sold / units received, 4-week)`.
+4. Never carry a definition across sources. Two retailers can mean different
+   things by the same word, and a portfolio view that averages them silently is a
+   number that describes nothing.
+
+The Metric Library is the catalogue of these forks and the exact question each
+one needs. It is the most valuable reference after this document.
+
+---
+
+## How they compose
+
+Principles 1, 2, 7, 9, and 10 govern what a number is: derived not authored,
+cross-checked, never altered in transit, never confused with someone's claim
+about it, and never shown without the definition that gives it meaning.
+
+Principles 3, 4, and 8 keep the system honest about the limits of what it can
+prove. Principle 5 makes the failure mode safe and visible. Principle 6 makes the
+guarantees real rather than merely written down.
+
+State the claim precisely, because it is narrow and it is the whole point. Not
+"the numbers are always right." Rather: no figure is authored by a model, errors
+fail loud and stale instead of silent and wrong, and every number traces back to
+the source file it came from. For a wrong figure to reach you, a bug would have to
+defeat the entire net above, and the net exists to catch bugs.
