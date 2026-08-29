@@ -9,7 +9,7 @@ A free, production-hardened skill and the full certified-BI doctrine from [Kymir
 ## What's in this repo
 
 - **[`honest-dataviz/`](honest-dataviz/SKILL.md)**, the free skill: charts and dashboards that read at a glance, survive a colour-blind reviewer, and never imply more certainty than the data has. Every rule in it was bought with a measured failure in a production reporting engine. None is taste.
-- **[`DOCTRINE.md`](DOCTRINE.md)**, the ten principles of certified BI, published in full. The one-sentence version: reconcile every figure to what the source asserts about itself, and refuse to guess, out loud.
+- **[`DOCTRINE.md`](DOCTRINE.md)**, the eleven principles of certified BI, published in full. The one-sentence version: reconcile every figure to what the source asserts about itself, and refuse to guess, out loud.
 - **[`INSTALL.md`](INSTALL.md)**, install in about a minute. Claude Code, Cursor, or any agent with a system prompt.
 
 ## Install
