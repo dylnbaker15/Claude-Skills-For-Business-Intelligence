@@ -91,6 +91,13 @@ good input and confirms nothing happens.
 A check that cannot fail is a comment with a runtime cost. More than once, checks
 that looked green for weeks turned out to be structurally incapable of firing.
 
+The fire test must call the deployed guard through the production code path
+and watch it block. A test that re-implements the guard's comparison inline
+can stay green forever while the real guard is broken; that is fire-test
+theater, and it fails this principle even though a test named after the guard
+exists and passes. A shipped check that structurally cannot fail is not a
+check, it is decoration, and rendering it beside real gates is a false claim.
+
 ## 7. Clean by relabelling, never by revaluing
 
 Cleaning the data is where most of the real work lives, and where trustworthy
@@ -124,6 +131,11 @@ each branch valued under its own hypothesis (an entry-error branch reprices
 the row; it does not delete it). A conditional figure computed by code and
 labelled as conditional is disclosure, not revaluing. A named doubt without
 its cost is a disclaimer, not a doubt.
+
+When two or more rulings are open at once, value every combination of open
+branches, the full cross-product, each cell computed by code and labelled, so
+the reader's most likely question, the corrected figure under the adopted
+scope, is answered on the page and never left as subtraction for the reader.
 
 ## 8. Thresholds are configuration, not code
 
@@ -216,7 +228,9 @@ multiplies through every sum consistently, so every reconciliation passes while
 the headline carries a number no human would believe on sight.
 
 Before certifying any figure, run a plausibility screen over every value
-column: compare each unit price, rate, and amount against its group's typical
+column: prices, rates, and amounts, and just as much the quantity columns,
+seats, units, and counts, since a fat-fingered quantity certifies exactly as
+cleanly as a fat-fingered price. Compare each value against its group's typical
 value (modal or median per plan, SKU, or category), in both directions, high
 side and low side. Flag any row beyond the configured multiple (a threshold,
 per principle 8), state each flagged row's share of every headline it feeds,
@@ -255,3 +269,10 @@ sits beside every number, the check results are visible on the page, and every
 sibling artifact is linked from it. Markdown alone is a draft, not a
 deliverable; a buyer forwards a page, not a repository. In a standalone build,
 "intranet" means the deliverable folder, and every linking rule still applies.
+
+Hygiene is part of the contract. Every emitted HTML artifact opens with
+<!doctype html> and <meta charset="utf-8"> in its first bytes, and the render
+check fails if any character on the page renders as a replacement glyph or a
+mojibake sequence. A deliverable that dies on first forward, a page that
+opens garbled, a PDF stamped with a build timestamp or a local file path,
+undoes every check that passed inside it.
