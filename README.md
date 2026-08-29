@@ -30,6 +30,8 @@ Drop a real export from your business into a project that contains `DOCTRINE.md`
 
 The difference shows up immediately: the agent hunts for what the file asserts about itself before it types a single figure, and tells you what it cannot prove.
 
+No export handy? [`sample-data/`](sample-data/) holds a fictional subscription export with three planted traps (a repeating invoice total, a 100x price slip, and a "Q2" filename hiding July rows). Run the same prompt against it; the README in that folder has the spoilers and the reconciled figures.
+
 ## Why "certified"
 
 A model on its own writes a clever first draft, confident everywhere: it guesses a total when the file states none, and presents every figure with equal confidence. These skills came from building a real reporting system that was broken on purpose across thirteen audit rounds and rebuilt until it stopped shipping a single number it could not prove. The doctrine in this repo is that system's constitution.
