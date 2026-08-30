@@ -274,12 +274,26 @@ When a quantity column's per-group typical value is degenerate against a
 legitimate discrete tier set, screen each value against the highest
 legitimate tier of its group with an exclusive boundary, publish the tier
 basis beside the threshold on the page, and record any unguided calibration
-as a PROPOSED ruling. The tier basis must come from outside the data being
-screened: a configured tier list, the Metric Library, or a stated prior. A
-ceiling derived from the screened column itself is circular, because the slip
-becomes its own ceiling and certifies clean; in an unattended run with no
-outside basis, the screen reports itself UNCALIBRATED as a visible flag,
-never as a PASS.
+as a PROPOSED ruling. The tier basis must never be derived from the candidate
+value itself: a ceiling that a slip can raise is circular, because the slip
+becomes its own ceiling and certifies clean.
+
+Non-circular does not mean unavailable, and refusing to screen is not a
+neutral outcome. There are three legitimate bases, in order of preference:
+a configured tier list, the Metric Library or another stated outside prior,
+and, always available, a **leave-one-out basis**: compare each value against
+its group's distribution computed with that value excluded. A single slipped
+row cannot move a median it is not part of, so leave-one-out is
+non-circular by construction and needs no configuration. Only when a group
+is too small for a leave-one-out read (fewer than four other rows) may the
+screen report UNCALIBRATED for that group, and it reports which groups, not
+the whole column.
+
+Be precise about what UNCALIBRATED costs, because an honest refusal to screen
+is still an unscreened column: the page states which columns and groups went
+unscreened, and no figure resting on an unscreened column may be described as
+certified. A screen that refuses everywhere and a screen that runs and finds
+nothing must never render the same.
 
 A flag raised by any screen travels the full disclosure path or the build
 fails: the stakes, the share of each headline, the PROPOSED ruling, the
@@ -294,6 +308,13 @@ headline at face value. Detection happened; the customer never saw it.
 This principle exists because it was once the only one missing: in testing,
 every agent that caught a planted 100x slip caught it on its own initiative,
 and initiative is not a guarantee. Now it is written down.
+
+It carries a second lesson, learned when the first fix failed. Closing the
+circular ceiling without naming a workable substitute produced screens that
+refused honestly and caught nothing, and a quantity slip certified as
+cleanly as before. Repairing the mechanism a rule names, while the harm the
+rule exists to prevent still lands, is not a fix. Test every rule against
+the harm, not against its own wording.
 
 ---
 
