@@ -274,7 +274,12 @@ When a quantity column's per-group typical value is degenerate against a
 legitimate discrete tier set, screen each value against the highest
 legitimate tier of its group with an exclusive boundary, publish the tier
 basis beside the threshold on the page, and record any unguided calibration
-as a PROPOSED ruling.
+as a PROPOSED ruling. The tier basis must come from outside the data being
+screened: a configured tier list, the Metric Library, or a stated prior. A
+ceiling derived from the screened column itself is circular, because the slip
+becomes its own ceiling and certifies clean; in an unattended run with no
+outside basis, the screen reports itself UNCALIBRATED as a visible flag,
+never as a PASS.
 
 A flag raised by any screen travels the full disclosure path or the build
 fails: the stakes, the share of each headline, the PROPOSED ruling, the
@@ -336,3 +341,15 @@ every rendered PASS (its checks-log convention is documented in the script).
 The gate is itself fire-tested against nine violation classes. A green gate
 is necessary, never sufficient: it cannot judge meaning, only mechanics, so
 it ends where the principles above begin.
+
+Three conventions make the contract auditable. The gate's verdict is captured
+inside the pack: run the gate with --stamp and it writes gate_verdict.txt
+into the deliverable (the one file no manifest lists or hashes); a pack with
+no captured verdict fails the plain gate run. "Every render of the affected
+figure" includes aggregates: a flagged row's marker travels to every rollup,
+region, month, and total that contains it. And check status is a three-word
+vocabulary: PASS (red-capable, fire-tested through the production path),
+INFO (informational, carries no green mark and claims no guarantee), and
+BLOCKED. A row that cannot fail may render as INFO or not at all, never as
+PASS; a self-referential check that resolves after print renders as INFO
+with its convention stated.
