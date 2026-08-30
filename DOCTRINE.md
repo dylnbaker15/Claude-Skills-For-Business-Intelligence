@@ -82,6 +82,19 @@ so a reader knows a newer cut is under review, and a person is told.
 Never publish a number you cannot stand behind. Stale and correct beats fresh and
 wrong, and the gap between them is where trust is lost for good.
 
+Failing closed is an artifact, not an exit code. On any blocking failure,
+structural or arithmetic, first run or rerun, the build still writes a BLOCKED
+report page and machine summary carrying every check verdict earned before
+the stop, the named reason for the stop, and no certified figure, then exits
+non-zero. A bare abort that leaves only a log line, a stack trace, or an
+empty folder is itself a failed check.
+
+And failing closed protects what already shipped: a build assembles every
+artifact in a staging directory and swaps it into the deliverable folder only
+after the final gate passes, so a failed run leaves the prior pack
+byte-for-byte untouched and visibly marked as having a newer cut under
+review.
+
 ## 6. Test that a check fires, not that it exists
 
 The most dangerous check is one that can never trip. Every guard needs a test
@@ -97,6 +110,13 @@ can stay green forever while the real guard is broken; that is fire-test
 theater, and it fails this principle even though a test named after the guard
 exists and passes. A shipped check that structurally cannot fail is not a
 check, it is decoration, and rendering it beside real gates is a false claim.
+
+The enforcement is per row: every check row rendered on a page must have a
+fire test that turns that exact row red through the production pipeline, and
+a row without one may not render as PASS. The same law covers configuration:
+a knob that nothing reads is deleted, not shipped, because an inert setting
+is a lie in config form (principle 8's empty-config rule, applied to dead
+wiring).
 
 ## 7. Clean by relabelling, never by revaluing
 
@@ -235,6 +255,19 @@ value (modal or median per plan, SKU, or category), in both directions, high
 side and low side. Flag any row beyond the configured multiple (a threshold,
 per principle 8), state each flagged row's share of every headline it feeds,
 and say on the page that the screen ran and what it found.
+
+When a quantity column's per-group typical value is degenerate against a
+legitimate discrete tier set, screen each value against the highest
+legitimate tier of its group with an exclusive boundary, publish the tier
+basis beside the threshold on the page, and record any unguided calibration
+as a PROPOSED ruling.
+
+A flag raised by any screen travels the full disclosure path or the build
+fails: the stakes, the share of each headline, the PROPOSED ruling, the
+what-if, and the flag glyph at every render of the affected figure. Detection
+that the render step then drops is worse than no detection: a check table
+that counts a flag the page denies is a manifest contradicting its page
+(principle 1), and it fails the build.
 
 This principle exists because it was once the only one missing: in testing,
 every agent that caught a planted 100x slip caught it on its own initiative,
