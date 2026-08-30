@@ -89,6 +89,13 @@ the stop, the named reason for the stop, and no certified figure, then exits
 non-zero. A bare abort that leaves only a log line, a stack trace, or an
 empty folder is itself a failed check.
 
+Seen in our own adversarial audits: one ambiguous date in an appended row
+crashed a build with a raw ValueError and zero artifacts, on a file whose
+other 537 rows had already earned fourteen passing verdicts. The customer in
+that story gets a stack trace instead of the one page that says "blocked on
+row 538, here is everything the file still proves." The law exists so the
+second story is the only possible one.
+
 And failing closed protects what already shipped: a build assembles every
 artifact in a staging directory and swaps it into the deliverable folder only
 after the final gate passes, so a failed run leaves the prior pack
@@ -110,6 +117,13 @@ can stay green forever while the real guard is broken; that is fire-test
 theater, and it fails this principle even though a test named after the guard
 exists and passes. A shipped check that structurally cannot fail is not a
 check, it is decoration, and rendering it beside real gates is a false claim.
+
+Our own adversarial audits caught every shape of this in one round: a check
+reading `"pass" if True else "fail"` rendered green on four surfaces; a
+"two independent rails" verification that built both rails from the same
+field list and compared 537 values to themselves; five check rows whose text
+no input could ever change. Every one sat beside real gates, indistinguishable
+to the reader.
 
 The enforcement is per row: every check row rendered on a page must have a
 fire test that turns that exact row red through the production pipeline, and
@@ -248,9 +262,9 @@ multiplies through every sum consistently, so every reconciliation passes while
 the headline carries a number no human would believe on sight.
 
 Before certifying any figure, run a plausibility screen over every value
-column: prices, rates, and amounts, and just as much the quantity columns,
-seats, units, and counts, since a fat-fingered quantity certifies exactly as
-cleanly as a fat-fingered price. Compare each value against its group's typical
+column: the price, rate, and amount columns, and just as much the quantity
+columns (seats, units, counts), since a fat-fingered quantity certifies
+exactly as cleanly as a fat-fingered price. Compare each value against its group's typical
 value (modal or median per plan, SKU, or category), in both directions, high
 side and low side. Flag any row beyond the configured multiple (a threshold,
 per principle 8), state each flagged row's share of every headline it feeds,
@@ -267,7 +281,10 @@ fails: the stakes, the share of each headline, the PROPOSED ruling, the
 what-if, and the flag glyph at every render of the affected figure. Detection
 that the render step then drops is worse than no detection: a check table
 that counts a flag the page denies is a manifest contradicting its page
-(principle 1), and it fails the build.
+(principle 1), and it fails the build. In our audits the probe that proved
+this was an internally consistent 100x seats slip: the screen caught it, the
+check table counted it, and the certified page still showed the inflated
+headline at face value. Detection happened; the customer never saw it.
 
 This principle exists because it was once the only one missing: in testing,
 every agent that caught a planted 100x slip caught it on its own initiative,
