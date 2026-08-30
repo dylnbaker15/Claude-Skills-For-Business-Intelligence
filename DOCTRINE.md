@@ -326,3 +326,13 @@ check fails if any character on the page renders as a replacement glyph or a
 mojibake sequence. A deliverable that dies on first forward, a page that
 opens garbled, a PDF stamped with a build timestamp or a local file path,
 undoes every check that passed inside it.
+
+The pack ships the mechanical half of this contract as code:
+`gate/doctrine_gate.py` (installed to `~/.kymira/gate/`). Run it over the
+deliverable folder before certifying anything; a red gate is a failed build.
+It enforces what a script can prove: hygiene, leaked paths, prose figures
+against machine artifacts, binary-verified hashes, and fire-test evidence for
+every rendered PASS (its checks-log convention is documented in the script).
+The gate is itself fire-tested against nine violation classes. A green gate
+is necessary, never sufficient: it cannot judge meaning, only mechanics, so
+it ends where the principles above begin.
