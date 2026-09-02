@@ -1,0 +1,21 @@
+{
+  "name": "kymira",
+  "description": "The free Kymira skill and doctrine for business intelligence an agent can prove: figures reconcile to the source file's own totals, and unprovable numbers are named instead of shipped.",
+  "owner": {
+    "name": "Dylan Baker",
+    "url": "https://kymira.ai"
+  },
+  "plugins": [
+    {
+      "name": "kymira-certified-bi",
+      "description": "Charts, dashboards and reports where every figure reconciles to a total the source file itself asserts, colour survives a colour-blind reviewer, and anything the file cannot prove is named on the page instead of shipped as a number. Includes the honest-dataviz skill and the eleven principles of certified BI.",
+      "author": {
+        "name": "Dylan Baker"
+      },
+      "category": "productivity",
+      "source": "./",
+      "homepage": "https://kymira.ai/skills/honest-dataviz",
+      "license": "MIT"
+    }
+  ]
+}

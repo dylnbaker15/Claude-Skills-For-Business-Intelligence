@@ -1,0 +1,26 @@
+{
+  "name": "kymira-certified-bi",
+  "displayName": "Kymira Certified BI",
+  "version": "2026.9.1",
+  "description": "Teaches Claude to build charts, dashboards and reports whose every figure reconciles to a total the source file itself asserts, and to name what the file cannot prove instead of shipping a number. Ships the honest-dataviz skill and the eleven principles of certified BI.",
+  "author": {
+    "name": "Dylan Baker",
+    "url": "https://kymira.ai"
+  },
+  "homepage": "https://kymira.ai/skills/honest-dataviz",
+  "repository": "https://github.com/dylnbaker15/claude-skills-for-business-intelligence",
+  "license": "MIT",
+  "keywords": [
+    "business-intelligence",
+    "data-analysis",
+    "data-visualization",
+    "dashboards",
+    "charts",
+    "reporting",
+    "fp-and-a",
+    "reconciliation",
+    "verification",
+    "accessibility"
+  ],
+  "skills": ["./"]
+}

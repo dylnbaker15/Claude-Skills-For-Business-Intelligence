@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use these skills or the doctrine in your work, please cite them."
+type: software
+title: "Claude Skills for Business Intelligence"
+abstract: >-
+  A free agent skill and the eleven principles of certified business
+  intelligence: build charts, dashboards and reports whose every figure
+  reconciles to a total the source file itself asserts, and name what the
+  file cannot prove instead of shipping it as a number.
+authors:
+  - family-names: Baker
+    given-names: Dylan
+    website: "https://kymira.ai"
+version: "2026.09.01"
+date-released: 2026-09-01
+license: MIT
+url: "https://github.com/dylnbaker15/claude-skills-for-business-intelligence"
+repository-code: "https://github.com/dylnbaker15/claude-skills-for-business-intelligence"
+keywords:
+  - business-intelligence
+  - data-visualization
+  - agent-skills
+  - claude-code
+  - cursor
+  - reconciliation
+  - reporting
